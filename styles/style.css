@@ -10,7 +10,357 @@
 
 */
 
+@keyframes scale {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.25;
+  }
+}
+
+@keyframes sparks {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.sparks {
+  opacity: 0;
+}
+
+.heart:hover .core {
+  transition: 0.3s;
+  fill: var(--heart-contour);
+}
+
+.heart:hover .main-body {
+  transition-delay: 0.05s;
+  transition: 0.3s;
+  fill: var(--heart-contour);
+}
+
+.heart:active .main-body {
+  transition: fill 0.3s;
+  fill: var(--heart-main-color);
+}
+
+.like-icon.is-liked .core { 
+  transition: 0.3s;
+  fill: var(--heart-main-color);
+}
+
+.like-icon.is-liked .main-body { 
+  transition-delay: 0.03s;
+  transition: 0.3s;
+  fill: var(--heart-main-color);
+}
+
+.like-icon.is-liked .contour { 
+  transition-delay: 0.06s;
+  transition: 0.3s;
+  fill: var(--heart-main-color);
+}
+
+.like-icon.is-liked {
+  animation-delay: scale 0.1s;
+  animation: scale 0.3s ease-in;
+}
+
+.like-icon.is-liked .sparks {
+  animation-delay: sparks 0.3s;
+  animation: sparks 0.3s ease-in;
+}
+
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--main-font), sans-serif;
+  font-variation-settings: 'wght' var(--main-font-text);
+  background-image: var(--bg-image1), var(--bg-image2), var(--bg-image3);
+  background-size: cover;
+  background-attachment: fixed;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--accent-font), sans-serif;
+  margin: 100px auto;
+  background-color: #fff;
+  border: var(--border);
+}
+
+.desktop-version {
+  width: var(--width-desktop);
+}
+
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(120px, 30%, 130px) clamp(14px, 3%, 120.5px);
+  text-transform: uppercase;
+}
+
+.header__logo-title {
+  line-height: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  margin-block-end: 20px;
+}
+
+.header__logo-subtitle {
+  line-height: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+}
+
+.content {
+  display: grid;
+  gap: 50px;
+  margin: 0 auto 103px;
+}
+
+.post {
+  background-color: #fff;
+  border: var(--border);
+}
+
+.post__heading {
+  padding-inline-start: 10px;
+  padding-block: 3px;
+  font-size: 18px;
+  line-height: 1.21;
+  font-variation-settings: 'wght' var(--main-font-heading, 700);
+  border-bottom: var(--border);
+}
+
+.post__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post__image-html2 {
+  filter: grayscale(0.7);
+}
+
+.post__image-css {
+  filter: saturate(300%);
+}
+
+.post__image-desigions {
+  filter: hue-rotate(30deg)
+}
+
+.post__image-care {
+  filter: invert(1) contrast(60%)
+}
+
+.post__image-support {
+  filter: sepia(0.9);
+}
+
+.post__image-blur {
+  filter: blur(1rem);
+}
+
+.post__image-experience {
+  filter: blur(0.1rem) hue-rotate(90deg) contrast(0.6) opacity(90%);
+}
+
+.post__image-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.post__image-text {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-family: var(--accent-font), sans-serif;
+  font-size: 14px;
+  opacity: 50%;
+  text-shadow: var(--text-stroke);
+}
+
+@supports((text-stroke: var(--text-stroke)) or (-webkit-text-stroke: var(--text-stroke))) {
+  .post__image-text {
+    -webkit-text-stroke: var(--text-stroke);
+    text-stroke: var(--text-stroke);
+    text-shadow: none;
+  }
+}
+
+.post__image-description {
+  border-top: var(--border);
+  display: grid;
+  grid-auto-flow: dense;
+  padding: 25px;
+  gap: 26px;
+  line-height: 1.17;
+  font-size: 18px;
+}
+
+.post__button-like {
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  gap: 12px;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--accent-font), sans-serif;
+  font-size: 14px;
+  background-color: #fff;
+  line-height: 0.9;
+  border: var(--border);
+  cursor: pointer;
+  min-height: 38px;
+  min-width: 130px;
+  overflow: hidden;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 2px 2px #000;
+  transition: box-shadow 0.3s ease;
+}
+
+.button::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  translate: -100%;
+  transition: 0.5s ease-in-out;
+}
+
+.button:hover::after {
+  translate: 0;
+}
+
+.button__text {
+  position: absolute;
+  content: "";
+  color: #fff;
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+.button-save {
+  color: #fff;
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+.button-heart {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  padding-block-start: 5px;
+}
+
+.heart-icon {
+  width: 38px;
+  height: 38px;
+}
+
+.button-heart:focus {
+  outline: none;
+}
+
+.button-heart:focus-visible .heart-icon {
+  border: var(--border);
+  transition: 0.3s ease;
+}
+
+.button-open {
+  gap: 8px;
+  max-width: 339px;
+  min-height: 55px;
+  justify-self: center;
+  padding: 15px 19px;
+}
+
+.floppy {
+  width: 21px;
+  height: 21px;
+  fill: #fff;
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+.floppy-dialog {
+  width: 39px;
+  height: 39px;
+}
+
+.dialog-id {
+  padding: 30px;
+  position: fixed;
+  inset: 0;
+  border: var(--border);
+  inline-size: clamp(341px, 70%, 353px);
+}
+
+.dialog-id__description {
+  text-transform: uppercase;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: var(--accent-font), sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dialog-id__text {
+  max-inline-size: 200px;
+}
+
+.button-close {
+  margin-block-start: 30px;
+  width: 100%;
+}
+
+.dialog-id::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+} 
+
+@media (width <= 375px) {
+  .mobile-version {
+    width: var(--width-mobile);
+  }
+
+  .button-open {
+    flex-direction: column;
+  }
+
+  .floppy {
+    width: 28px;
+    height: 28px;
+  }
+}
+
