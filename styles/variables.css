@@ -4,13 +4,13 @@
   --accent-font: 'PressStart2P';
   --main-font-text: 400;
   --main-font-heading: 700;
-  --width-desktop: clamp(375px, 80%, 696px);
+  --width-desktop: clamp(375px, 80%, 700px);
   --width-mobile: 100vw;
   --border: 2px solid #000;
   --text-stroke: 1px #fff;
-  --bg-image1: repeating-linear-gradient(to right, #d3d3d3 0px 2px, transparent 2px 4px);
-  --bg-image2: repeating-linear-gradient(to bottom, #d3d3d3 0px 2px, transparent 2px 4px);
-  --bg-image3: repeating-linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a);
+  --bg-image-toright: repeating-linear-gradient(to right, #d3d3d3 0px 2px, transparent 2px 4px);
+  --bg-image-tobottom: repeating-linear-gradient(to bottom, #d3d3d3 0px 2px, transparent 2px 4px);
+  --bg-image-blackout: repeating-linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a);
   --heart-contour: black;
   --heart-main-color: #FF0000;
 }

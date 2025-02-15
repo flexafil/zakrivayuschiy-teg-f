@@ -10,69 +10,52 @@
 
 */
 
-@keyframes scale {
-  from {
-    scale: 1;
-  }
-  to {
-    scale: 1.25;
-  }
-}
-
-@keyframes sparks {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 100%;
-  }
-}
-
-.visually-hidden {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-}
-
 .sparks {
   opacity: 0;
 }
 
+.core {
+  fill: transparent;
+  transition: fill 0.3s 0.03s linear;
+}
+
+.main-body {
+  fill: transparent;
+  transition: fill 0.3s 0.05s linear;
+}
+
 .heart:hover .core {
-  transition: 0.3s;
   fill: var(--heart-contour);
 }
 
 .heart:hover .main-body {
-  transition-delay: 0.05s;
-  transition: 0.3s;
   fill: var(--heart-contour);
 }
 
-.heart:active .main-body {
-  transition: fill 0.3s;
+.button-heart:active .core {
+  transition: fill linear;
   fill: var(--heart-main-color);
 }
 
-.like-icon.is-liked .core { 
-  transition: 0.3s;
+.button-heart:active .main-body {
+  transition: fill 0.3s 0.05s linear;
   fill: var(--heart-main-color);
 }
 
-.like-icon.is-liked .main-body { 
+.like-icon.is-liked .core {
+  transition: 0.3s linear;
+  fill: var(--heart-main-color);
+}
+
+.like-icon.is-liked .main-body {
   transition-delay: 0.03s;
-  transition: 0.3s;
+  transition: 0.3s linear;
   fill: var(--heart-main-color);
 }
 
-.like-icon.is-liked .contour { 
+.like-icon.is-liked .contour {
   transition-delay: 0.06s;
-  transition: 0.3s;
+  transition: 0.3s linear;
   fill: var(--heart-main-color);
 }
 
@@ -90,8 +73,9 @@
   min-inline-size: 320px;
   min-block-size: 100dvb;
   font-family: var(--main-font), sans-serif;
-  font-variation-settings: 'wght' var(--main-font-text);
-  background-image: var(--bg-image1), var(--bg-image2), var(--bg-image3);
+  font-variation-settings: "wght" var(--main-font-text);
+  background-image: var(--bg-image-toright), var(--bg-image-tobottom),
+    var(--bg-image-blackout);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -100,14 +84,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--accent-font), sans-serif;
+  font-family: var(--accent-font), fantasy;
   margin: 100px auto;
   background-color: #fff;
   border: var(--border);
+  max-height: 368px;
 }
 
 .desktop-version {
-  width: var(--width-desktop);
+  max-width: var(--width-desktop);
 }
 
 .header__logo {
@@ -142,11 +127,12 @@
 }
 
 .post__heading {
-  padding-inline-start: 10px;
-  padding-block: 3px;
+  padding-inline: 10px;
+  padding-block-start: 5px;
+  padding-block-end: 3px;
   font-size: 18px;
   line-height: 1.21;
-  font-variation-settings: 'wght' var(--main-font-heading, 700);
+  font-variation-settings: "wght" var(--main-font-heading, 700);
   border-bottom: var(--border);
 }
 
@@ -156,23 +142,23 @@
   object-fit: cover;
 }
 
-.post__image-html2 {
+.post__image-grayscaled {
   filter: grayscale(0.7);
 }
 
-.post__image-css {
+.post__image-saturated {
   filter: saturate(300%);
 }
 
-.post__image-desigions {
-  filter: hue-rotate(30deg)
+.post__image-hue-rotated {
+  filter: hue-rotate(30deg);
 }
 
-.post__image-care {
-  filter: invert(1) contrast(60%)
+.post__image-inverted {
+  filter: invert(1) contrast(60%);
 }
 
-.post__image-support {
+.post__image-sepiaed {
   filter: sepia(0.9);
 }
 
@@ -180,11 +166,12 @@
   filter: blur(1rem);
 }
 
-.post__image-experience {
+.post__image-ugly {
   filter: blur(0.1rem) hue-rotate(90deg) contrast(0.6) opacity(90%);
 }
 
 .post__image-photo {
+  display: flex;
   position: relative;
   overflow: hidden;
 }
@@ -193,13 +180,15 @@
   position: absolute;
   top: 25px;
   right: 25px;
-  font-family: var(--accent-font), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: 14px;
   opacity: 50%;
   text-shadow: var(--text-stroke);
 }
 
-@supports((text-stroke: var(--text-stroke)) or (-webkit-text-stroke: var(--text-stroke))) {
+@supports (
+  (text-stroke: var(--text-stroke)) or (-webkit-text-stroke: var(--text-stroke))
+) {
   .post__image-text {
     -webkit-text-stroke: var(--text-stroke);
     text-stroke: var(--text-stroke);
@@ -221,7 +210,7 @@
   display: flex;
   align-items: center;
   justify-self: flex-end;
-  gap: 12px;
+  gap: 6px;
 }
 
 .button {
@@ -229,7 +218,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--accent-font), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: 14px;
   background-color: #fff;
   line-height: 0.9;
@@ -238,12 +227,12 @@
   min-height: 38px;
   min-width: 130px;
   overflow: hidden;
+  transition: box-shadow 0.3s ease;
 }
 
 .button:focus {
   outline: none;
   box-shadow: 2px 2px #000;
-  transition: box-shadow 0.3s ease;
 }
 
 .button::after {
@@ -279,12 +268,14 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  padding-block-start: 5px;
+  height: 37px;
 }
 
 .heart-icon {
-  width: 38px;
+  width: 40px;
   height: 38px;
+  border: 2px solid rgba(0, 0, 0, 0);
+  transition: 0.3s ease;
 }
 
 .button-heart:focus {
@@ -293,7 +284,6 @@
 
 .button-heart:focus-visible .heart-icon {
   border: var(--border);
-  transition: 0.3s ease;
 }
 
 .button-open {
@@ -331,7 +321,7 @@
   gap: 20px;
   align-items: center;
   justify-content: flex-start;
-  font-family: var(--accent-font), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -347,11 +337,15 @@
 
 .dialog-id::backdrop {
   background-color: rgb(0 0 0 / 0.75);
-} 
+}
 
 @media (width <= 375px) {
   .mobile-version {
     width: var(--width-mobile);
+  }
+
+  .post__image-text {
+    right: 13px;
   }
 
   .button-open {
@@ -363,4 +357,3 @@
     height: 28px;
   }
 }
-
